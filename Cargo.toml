@@ -1,0 +1,38 @@
+[package]
+name = "msg_sampling"
+version = "0.1.0"
+edition = "2024"
+authors = ["ffmulks <63452434+ffmulks@users.noreply.github.com>"]
+license = "MIT OR Apache-2.0"
+description = "Deterministic hashing and weighted/spatial sampling for Bevy games."
+repository = "https://github.com/MolecularSadism/msg_sampling"
+
+[dependencies]
+bevy = { version = "0.18", default-features = false }
+# Direct dependency to enable the `curve` feature (EaseFunction), which the
+# top-level `bevy` crate exposes no passthrough for.
+bevy_math = { version = "0.18", default-features = false, features = ["curve"] }
+rand = "0.10"
+
+[dev-dependencies]
+criterion = "0.7"
+
+[[bench]]
+name = "sampling"
+harness = false
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = [
+    "cfg(bevy_lint)",
+] }
+
+[lints.rustdoc]
+invalid_codeblock_attributes = "forbid"
+unescaped_backticks = "forbid"
+
+[lints.clippy]
+too_many_arguments = "allow"
+type_complexity = "allow"
+needless_pass_by_value = "allow"
+missing_panics_doc = "warn"
+missing_errors_doc = "warn"
