@@ -4,7 +4,7 @@ Criterion baseline `base`, captured 2026-08-26.
 
 | | |
 |---|---|
-| Commit | `HEAD` |
+| Commit | `eb8522ebd5e9` |
 | Branch | `master` |
 | Toolchain | rustc 1.98.0 (88d9e12ae 2026-08-18) |
 | Host | Linux x86_64 container (shared/virtualised) |
@@ -39,11 +39,11 @@ cargo bench --bench sampling -- --baseline base
 Taken in a shared virtualised container. Treat them as an order-of-magnitude
 record, not a regression gate.
 
-Re-running `take_batch/3x1000_pending` on byte-identical code about an hour
-later on the *same* host reported `+31%` with `p = 0.00`. Criterion's
-significance test measures sampling noise within a run; it cannot see the
-host's load drifting between runs. So a reported change of this size here is
-not evidence of a real regression.
+`hash1_u32` is byte-identical to the `msg_rng` function it was extracted from,
+which measured `1.2865 ns` on this same host earlier the same day against the
+`1.904 ns` recorded above — a 1.48x spread on unchanged machine code. Criterion's
+significance test measures sampling noise within a run; it cannot see the host's
+load drifting between runs, so it will report a gap like that as significant.
 
 To draw a conclusion from a comparison, capture the baseline and the
 comparison back to back in one sitting, and treat anything under roughly
