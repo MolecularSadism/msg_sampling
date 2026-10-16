@@ -4,6 +4,7 @@ Deterministic hashing and sampling primitives for procedural generation in Bevy 
 
 | Bevy | msg_sampling |
 |---|---|
+| 0.19 | 0.2.0 |
 | 0.18 | 0.1.0 |
 
 ## What's here
